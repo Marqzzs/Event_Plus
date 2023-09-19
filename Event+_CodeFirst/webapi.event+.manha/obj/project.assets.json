@@ -3344,11 +3344,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\55358961879\\Desktop\\Event+_CodeFirst\\webapi.event+.manha\\webapi.event+.manha.csproj",
+      "projectUniqueName": "C:\\Users\\55358961879\\Desktop\\Event_Plus\\Event+_CodeFirst\\webapi.event+.manha\\webapi.event+.manha.csproj",
       "projectName": "webapi.event+.manha",
-      "projectPath": "C:\\Users\\55358961879\\Desktop\\Event+_CodeFirst\\webapi.event+.manha\\webapi.event+.manha.csproj",
+      "projectPath": "C:\\Users\\55358961879\\Desktop\\Event_Plus\\Event+_CodeFirst\\webapi.event+.manha\\webapi.event+.manha.csproj",
       "packagesPath": "C:\\Users\\55358961879\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\55358961879\\Desktop\\Event+_CodeFirst\\webapi.event+.manha\\obj\\",
+      "outputPath": "C:\\Users\\55358961879\\Desktop\\Event_Plus\\Event+_CodeFirst\\webapi.event+.manha\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\55358961879\\AppData\\Roaming\\NuGet\\NuGet.Config",

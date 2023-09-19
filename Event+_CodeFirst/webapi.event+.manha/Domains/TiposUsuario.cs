@@ -7,7 +7,7 @@ namespace webapi.event_.manha.Domains
     public class TiposUsuario
     {
         [Key]
-        public Guid IdtipoUsuario { get; set; } = Guid.NewGuid();
+        public Guid IdTipoUsuario { get; set; } = Guid.NewGuid();
 
         [Column(TypeName ="VARCHAR(100)")]
         [Required(ErrorMessage ="O titulo do usuario e obrigatorio")]

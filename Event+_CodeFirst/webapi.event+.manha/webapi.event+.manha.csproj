@@ -26,11 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Contexts\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Uteis\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
