@@ -32,5 +32,59 @@ namespace webapi.event_.manha.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {  
+                return Ok(_tiposUsuarioRepository.Listar());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            try
+            {
+                return Ok(_tiposUsuarioRepository.BuscarPorId(id));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            } 
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                _tiposUsuarioRepository.Deletar(id);
+
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Put(Guid id, TiposUsuario tipo)
+        {
+            try
+            {
+                _tiposUsuarioRepository.Atualizar(id, tipo);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

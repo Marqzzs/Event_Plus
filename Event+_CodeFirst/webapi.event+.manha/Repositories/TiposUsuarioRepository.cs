@@ -21,29 +21,42 @@ namespace webapi.event_.manha.Repositories
         }
         public void Atualizar(Guid id, TiposUsuario tipoUsuario)
         {
-            throw new NotImplementedException();
+            TiposUsuario tipoBuscado = ctx.TiposUsuario.Find(id)!;
+
+            if (tipoBuscado != null)
+            {
+                tipoBuscado.Titulo = tipoUsuario.Titulo;
+            }
+
+            ctx.TiposUsuario.Update(tipoBuscado!);
+
+            ctx.SaveChanges();
         }
 
         public TiposUsuario BuscarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return ctx.TiposUsuario.FirstOrDefault(t => t.IdTipoUsuario == id)!;
         }
 
         public void Cadastrar(TiposUsuario tipoUsuario)
         {
-            ctx.TiposUsuarios.Add(tipoUsuario);
+            ctx.TiposUsuario.Add(tipoUsuario);
 
             ctx.SaveChanges();
         }
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            TiposUsuario tipoBuscado = ctx.TiposUsuario.Find(id)!;
+
+            ctx.TiposUsuario.Remove(tipoBuscado);
+
+            ctx.SaveChanges();
         }
 
         public List<TiposUsuario> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.TiposUsuario.ToList();
         }
     }
 }

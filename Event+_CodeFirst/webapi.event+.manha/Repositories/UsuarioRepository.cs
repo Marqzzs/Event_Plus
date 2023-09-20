@@ -1,4 +1,5 @@
-﻿using webapi.event_.manha.Contexts;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using webapi.event_.manha.Contexts;
 using webapi.event_.manha.Domains;
 using webapi.event_.manha.Interfaces;
 using webapi.event_.manha.Uteis;
@@ -20,19 +21,32 @@ namespace webapi.event_.manha.Repositories
         {
             ctx = new EventContext();
         }
+
         public Usuario BuscarPorEmailESenha(string email, string senha)
         {
             try
             {
-                Usuario usuario = ctx.Usuario.FirstOrDefault(u => u.Email == email)!;
+                Usuario usuarioBuscado = ctx.Usuario
+                    .Select(u => new Usuario
+                    {
+                        IdUsuario = u.IdUsuario,
+                        Nome = u.Nome,
+                        Email = u.Email,
+                        Senha = u.Senha,
+                        TiposUsuario = new TiposUsuario
+                        {
+                            IdTipoUsuario = u.IdTipoUsuario,
+                            Titulo = u.TiposUsuario!.Titulo
+                        }
+                    }).FirstOrDefault(u => u.Email == email)!;
 
-                if (usuario != null)
+                if (usuarioBuscado != null)
                 {
-                    bool confere = Criptografia.CompararHash(senha, usuario.Senha!);
+                    bool confere = Criptografia.CompararHash(senha, usuarioBuscado.Senha!);
 
                     if (confere)
                     {
-                        return usuario;
+                        return usuarioBuscado;
                     }
                 }
                 return null!;

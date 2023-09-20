@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace webapi.event_.manha.Migrations
 {
     /// <inheritdoc />
-    public partial class BD_V1 : Migration
+    public partial class BD : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,12 +41,12 @@ namespace webapi.event_.manha.Migrations
                 name: "TiposUsuario",
                 columns: table => new
                 {
-                    IdtipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdTipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Titulo = table.Column<string>(type: "VARCHAR(100)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TiposUsuario", x => x.IdtipoUsuario);
+                    table.PrimaryKey("PK_TiposUsuario", x => x.IdTipoUsuario);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,7 +94,7 @@ namespace webapi.event_.manha.Migrations
                         name: "FK_Usuario_TiposUsuario_IdTipoUsuario",
                         column: x => x.IdTipoUsuario,
                         principalTable: "TiposUsuario",
-                        principalColumn: "IdtipoUsuario",
+                        principalColumn: "IdTipoUsuario",
                         onDelete: ReferentialAction.Cascade);
                 });
 

@@ -151,7 +151,7 @@ namespace webapi.event_.manha.Migrations
 
             modelBuilder.Entity("webapi.event_.manha.Domains.TiposUsuario", b =>
                 {
-                    b.Property<Guid>("IdtipoUsuario")
+                    b.Property<Guid>("IdTipoUsuario")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -159,7 +159,7 @@ namespace webapi.event_.manha.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
 
-                    b.HasKey("IdtipoUsuario");
+                    b.HasKey("IdTipoUsuario");
 
                     b.ToTable("TiposUsuario");
                 });

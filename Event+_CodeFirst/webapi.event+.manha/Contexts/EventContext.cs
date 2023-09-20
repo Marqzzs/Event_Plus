@@ -5,11 +5,11 @@ namespace webapi.event_.manha.Contexts
 {
     public class EventContext : DbContext
     {
-        public DbSet<TiposUsuario> TiposUsuarios { get; set; }
+        public DbSet<TiposUsuario> TiposUsuario { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<TiposEvento> TiposEvento { get; set; }
         public DbSet<Evento> Evento { get; set; }
-        public DbSet<ComentariosEvento> ComentariosEventos { get; set; }
+        public DbSet<ComentariosEvento> ComentariosEvento { get; set; }
         public DbSet<Instituicao> Instituicao { get; set; }
         public DbSet<PresencasEvento> Presencas { get; set; }
 
