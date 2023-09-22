@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.event_.manha.Domains;
@@ -10,23 +11,22 @@ namespace webapi.event_.manha.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class TiposUsuarioController : ControllerBase
+    public class EventoController : ControllerBase
     {
-        private ITiposUsuarioRepository _tiposUsuarioRepository;
+        private IEventoRepository _eventoRepository;
 
-        public TiposUsuarioController()
+        public EventoController()
         {
-            _tiposUsuarioRepository = new TiposUsuarioRepository();
+            _eventoRepository = new EventoRepository();
         }
 
         [HttpPost]
-        public IActionResult Post(TiposUsuario tiposUsuario)
+        public IActionResult Post(Evento evento)
         {
             try
             {
-                _tiposUsuarioRepository.Cadastrar(tiposUsuario);
-
-                return StatusCode(200);
+                _eventoRepository.Cadastrar(evento);
+                return StatusCode(201);
             }
             catch (Exception e)
             {
@@ -35,56 +35,57 @@ namespace webapi.event_.manha.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="Administrador")]
         public IActionResult Get()
         {
             try
-            {  
-                return Ok(_tiposUsuarioRepository.Listar());
+            {
+                return Ok(_eventoRepository.Listar());
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
+
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
             try
             {
-                return Ok(_tiposUsuarioRepository.BuscarPorId(id));
+                return Ok(_eventoRepository.BuscarPorId(id));
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest();
-            } 
+                return BadRequest($"{e.Message}");
+            }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public IActionResult Delete(Guid id)
         {
             try
             {
-                _tiposUsuarioRepository.Deletar(id);
-
+                _eventoRepository.Deletar(id);
                 return NoContent();
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        [HttpPut]
-        public IActionResult Put(Guid id, TiposUsuario tipo)
-        {
-            try
-            {
-                _tiposUsuarioRepository.Atualizar(id, tipo);
-                return Ok();
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Put(Guid id, Evento evento)
+        {
+            try
+            {
+                _eventoRepository.Atualizar(id, evento);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"{e.Message}");
             }
         }
     }

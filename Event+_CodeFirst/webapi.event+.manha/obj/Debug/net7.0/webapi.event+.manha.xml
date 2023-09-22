@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>webapi.event+.manha</name>
+    </assembly>
+    <members>
+        <member name="T:webapi.event_.manha.Migrations.BD">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.event_.manha.Migrations.BD.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.event_.manha.Migrations.BD.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.event_.manha.Migrations.BD.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="F:webapi.event_.manha.Repositories.TiposUsuarioRepository.ctx">
+            <summary>
+            Variavel privada somente para leitura para armazenar os dados do contexto
+            </summary>
+        </member>
+        <member name="M:webapi.event_.manha.Repositories.TiposUsuarioRepository.#ctor">
+            <summary>
+            Construtor do repositorio
+            Toda vez que o repositorio for iinstanciado
+            Ele tera acesso aos dados fornecidos pelo contexto
+            </summary>
+        </member>
+        <member name="F:webapi.event_.manha.Repositories.UsuarioRepository.ctx">
+            <summary>
+            Variavel privada somente para leitura para armazenar os dados do contexto
+            </summary>
+        </member>
+        <member name="M:webapi.event_.manha.Repositories.UsuarioRepository.#ctor">
+            <summary>
+            Construtor do repositorio
+            Toda vez que o repositorio for iinstanciado
+            Ele tera acesso aos dados fornecidos pelo contexto
+            </summary>
+        </member>
+    </members>
+</doc>

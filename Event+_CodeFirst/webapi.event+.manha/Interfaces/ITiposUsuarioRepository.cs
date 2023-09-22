@@ -10,7 +10,7 @@ namespace webapi.event_.manha.Interfaces
 
         List<TiposUsuario> Listar();
 
-        TiposUsuario BuscarPorId (Guid id);
+        TiposUsuario BuscarPorId(Guid id);
 
         void Atualizar(Guid id, TiposUsuario tipoUsuario);
     }

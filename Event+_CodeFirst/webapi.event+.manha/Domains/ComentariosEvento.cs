@@ -7,7 +7,7 @@ namespace webapi.event_.manha.Domains
     public class ComentariosEvento
     {
         [Key]
-        public Guid ComentarioEvento { get; set; } = Guid.NewGuid();
+        public Guid IdComentarioEvento { get; set; } = Guid.NewGuid();
 
         [Column(TypeName ="TEXT")]
         [Required(ErrorMessage ="O comenatario e obrigatorio")]

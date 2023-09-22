@@ -7,6 +7,7 @@ using webapi.event_.manha.Domains;
 using webapi.event_.manha.Interfaces;
 using webapi.event_.manha.Repositories;
 using webapi.event_.manha.ViewModels;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace webapi.event_.manha.Controllers
 {
@@ -15,7 +16,7 @@ namespace webapi.event_.manha.Controllers
     [Produces("application/json")]
     public class LoginController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private IUsuarioRepository _usuarioRepository;
 
         public LoginController()
         {
@@ -23,7 +24,7 @@ namespace webapi.event_.manha.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel usuario)
+        public IActionResult Post(LoginViewModel usuario)
         {
             try
             {
@@ -31,50 +32,40 @@ namespace webapi.event_.manha.Controllers
 
                 if (usuarioBuscado == null)
                 {
-                    return NotFound("Email ou senha incorretos");
+                    return StatusCode(401, "Email ou senha inválidos!");
                 }
+
+                //lógica do token:
+
                 var claims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email!),
-
                     new Claim(JwtRegisteredClaimNames.Name, usuarioBuscado.Nome!),
-
-                    new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
-
-                    new Claim(ClaimTypes.Role, usuarioBuscado.TiposUsuario!.Titulo!)
+                    new Claim(JwtRegisteredClaimNames.Jti,usuarioBuscado.IdUsuario.ToString()),
+                    new Claim(ClaimTypes.Role,usuarioBuscado.TiposUsuario!.Titulo!)
                 };
 
-                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("event+-chave-autenticacao-webapi"));
+                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("projeto-event-webapi-chave-autenticacao"));
 
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                var token = new JwtSecurityToken
-                    (
-                            //emissor do token
-                            issuer: "webapi.event+.manha",
-
-                            //Destinatario do token
-                            audience: "webapi.event+.manha",
-
-                            //Dados definidos nas Claims(informações)
-                            claims: claims,
-
-                            //Tempo de expiração do token
-                            expires: DateTime.Now.AddMinutes(5),
-
-                            //Credenciais do token
-                            signingCredentials: creds
+                var token = new JwtSecurityToken(
+                        issuer: "webapi.event+.manha",
+                        audience: "webapi.event+.manha",
+                        claims: claims,
+                        expires: DateTime.Now.AddMinutes(5),
+                        signingCredentials: creds
                     );
+
                 return Ok(new
                 {
-
                     token = new JwtSecurityTokenHandler().WriteToken(token)
-
                 });
+
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest();
+                return BadRequest(e.Message);
             }
         }
     }
