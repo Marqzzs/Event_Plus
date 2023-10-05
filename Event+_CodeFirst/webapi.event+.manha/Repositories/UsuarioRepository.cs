@@ -22,6 +22,12 @@ namespace webapi.event_.manha.Repositories
             ctx = new EventContext();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="senha"></param>
+        /// <returns></returns>
         public Usuario BuscarPorEmailESenha(string email, string senha)
         {
             try
@@ -57,6 +63,11 @@ namespace webapi.event_.manha.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Usuario BuscarPorId(Guid id)
         {
             try
@@ -77,8 +88,7 @@ namespace webapi.event_.manha.Repositories
                 {
                     return usuario;
                 }
-                return null!;
-                
+                return null!;    
             }
             catch (Exception)
             {
@@ -86,6 +96,10 @@ namespace webapi.event_.manha.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
         public void Cadastrar(Usuario usuario)
         {
             try

@@ -40,5 +40,26 @@
             Ele tera acesso aos dados fornecidos pelo contexto
             </summary>
         </member>
+        <member name="M:webapi.event_.manha.Repositories.UsuarioRepository.BuscarPorEmailESenha(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="email"></param>
+            <param name="senha"></param>
+            <returns></returns>
+        </member>
+        <member name="M:webapi.event_.manha.Repositories.UsuarioRepository.BuscarPorId(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:webapi.event_.manha.Repositories.UsuarioRepository.Cadastrar(webapi.event_.manha.Domains.Usuario)">
+            <summary>
+            
+            </summary>
+            <param name="usuario"></param>
+        </member>
     </members>
 </doc>
